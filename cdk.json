@@ -1,5 +1,5 @@
 {
-  "app": "node bin/cdk-report-test.js",
+  "app": "python app.py",
   "watch": {
     "include": [
       "**"
@@ -7,11 +7,11 @@
     "exclude": [
       "README.md",
       "cdk*.json",
-      "jest.config.js",
-      "package*.json",
-      "yarn.lock",
-      "node_modules",
-      "test"
+      "requirements*.txt",
+      "source.bat",
+      "**/__init__.py",
+      "python/__pycache__",
+      "tests"
     ]
   },
   "context": {
