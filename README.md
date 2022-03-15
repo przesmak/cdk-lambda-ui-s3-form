@@ -1,64 +1,27 @@
 
-# Welcome to your CDK Python project!
+# CDK project example with UI
 
-This is a blank project for Python development with CDK.
+This is a project for Python development with CDK.
+It contains full-stack development example with UI made in React.js, lambda function to perform storage in the static file database and AWS S3 buckets.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Cloud Stack: 
 
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
+### UI 
 
-To manually create a virtualenv on MacOS and Linux:
+The front end deployed in one of the S3 buckets. It contains static page with simplistic form to enter your name and surname. Additionally there is possibility to describe a JSON file name, which then will be stored in S3 bucket. 
+
+Before each deployment to the AWS cloud is necessary to build react webpage by running a script: 
 
 ```
-$ python -m venv .venv
+npm run build
 ```
 
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
+### S3 buckets
 
-```
-$ source .venv/bin/activate
-```
+There are 2 buckets: 
+- storing data from UI form in JSON file format
+- hosting static website build in React (WARNING: the endpoint of this bucket is exposed to public)
 
-If you are a Windows platform, you would activate the virtualenv like this:
+### Lambda function handler
 
-```
-% .venv\Scripts\activate.bat
-```
-
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
-$ pip install -r requirements.txt
-```
-
-At this point you can now synthesize the CloudFormation template for this code.
-
-```
-$ cdk synth
-```
-
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
-
-## Useful commands
-
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
-
-Enjoy!
-
-
-
-### Endpoints: 
-
-CdkReportTestStack.Endpoint8024A810 = https://n2td2m0kxa.execute-api.eu-west-1.amazonaws.com/prod/
+Lambada handler redirect RestAPI queries and save data from the UI form in the S3 bucket 
